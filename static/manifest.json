@@ -1,0 +1,30 @@
+{
+    "name": "My first Svelte Extension",
+    "description": "A browser extension made with Svelte Kit",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "background.js",
+        "type": "module"
+    },
+    "permissions": [
+      "activeTab",
+      "tabs",
+      "contextMenus"
+    ],
+    "action": {
+      "default_title": "Svelte Extension",
+      "default_icon": { "16": "/favicon.png" },
+
+      "default_popup": "index.html"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+
+            "js": ["content.js"],
+            "run_at": "document_end"
+        }
+    ]
+
+  }
