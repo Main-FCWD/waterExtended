@@ -17,17 +17,30 @@ document.body.onload = function () {
 console.log(mbutton)
 
 mbutton.addEventListener('click', () => {
-  var panel = document.getElementById('myPanel');
+  var panel = document.createElement('div');
+  panel.classList.add('munisPanel');
+  document.body.appendChild(panel);
+  document.getElementsByClassName('munisPanel')[0];
   alert('button pushed!')
-  panel.style.transform = 'translateX(100%)';
-  panel.style.opacity = 0;
+  panel.style.transition = "3s ease-in ease-out";
   panel.animate(
     {
-      transform: 'translateX(0%)',
+      transform: 'translateX(0)',
       opacity: 1
     },
     500
   );
+
+  var panelHTML = 
+`<div>
+        <span>Statitics</span>
+        <div data-dashlane-rid="caadf806d22d3fb1" data-form-type="other">
+            <label>Account #: </label>
+            <input style="color: red;" data-dashlane-rid="c5e73ab24a4e79a2" data-form-type="other">
+        </div>
+</div>`
+
+  panel.innerHTML = panelHTML
 });
 
 

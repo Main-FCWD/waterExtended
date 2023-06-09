@@ -1,6 +1,18 @@
 .munisButton {
     position: fixed;
     top: 5rem;
-    right: 0%;
-    z-index: 999;
+    right: 10px;
+    z-index: 998;
+   
+}
+
+.munisPanel {
+    position: fixed;
+    top: 3rem;
+    height: calc(95vh - 2rem);
+    width: 25em;
+    right: 10px;
+    z-index: 999; 
+    background-color: white;
+    border-radius: .5rem;
 }
