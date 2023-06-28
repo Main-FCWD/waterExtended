@@ -138,19 +138,19 @@ document.body.onload = function () {
 	panel.style.transform = 'translateX(150%)';
 	panel.style.opacity = '0%';
 
-mbutton.addEventListener('click', () => {
-  var panel = document.getElementById('myPanel');
-  alert('button pushed!')
-  panel.style.transform = 'translateX(100%)';
-  panel.style.opacity = 0;
-  panel.animate(
-    {
-      transform: 'translateX(0%)',
-      opacity: 1
-    },
-    500
-  );
-});
+	mbutton.addEventListener('click', () => {
+		// console.log('button pushed!');
+
+		panel.animate(
+			{
+				transform: 'translateX(0%)',
+				opacity: '100%'
+			},
+			1000
+		);
+		panel.style.transform = 'translateX(0%)';
+		panel.style.opacity = '100%';
+	});
 
 	var panelbutton = document.querySelector('body > div.munisPanel > div.closebtn');
 	panelbutton.addEventListener('click', () => {
