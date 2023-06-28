@@ -10,7 +10,8 @@
     "permissions": [
       "activeTab",
       "tabs",
-      "contextMenus"
+      "contextMenus",
+      "nativeMessaging"
     ],
     "action": {
       "default_title": "Svelte Extension",

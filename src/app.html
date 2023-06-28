@@ -5,9 +5,20 @@
 		<meta name="description" content="" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script src="https://unpkg.com/@supabase/supabase-js"></script>
+		<script type="module">
+			import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+			const supabase = createClient(
+				'https://nkkzwoydapppptjcjqsm.supabase.co',
+				'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ra3p3b3lkYXBwcHB0amNqcXNtIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODMwNTM3MDIsImV4cCI6MTk5ODYyOTcwMn0.hm94JMq-eHUA4cvvucxx1P5e_IV84ZJuQHNsyZK4re8'
+			);
+
+			console.log('Supabase Instance: ', supabase);
+			// ...
+		</script>
 		%sveltekit.head%
 	</head>
-	<body style="width: 400px;height: 500px">
+	<body style="width: 400px; height: 500px">
 		<div id="svelte" style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>

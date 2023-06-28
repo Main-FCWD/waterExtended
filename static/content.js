@@ -13,55 +13,172 @@ document.body.onload = function () {
 	button.textContent = 'Munis Stats';
 	document.body.appendChild(button);
 
-  var mbutton = document.querySelector("body > button");
-console.log(mbutton)
+	var mbutton = document.querySelector('body > button');
+	console.log(mbutton);
+	var panel = document.createElement('div');
+	panel.innerHTML = `   <div class="closebtn">   
+		<button class="closebtnstyle">
+		</button>
+		</div>
+		<div class="titleSpan">
+        <span>Usage Statistics</span>
+      </div>
+      <div class="Account-Data">
+        <div class="AccountNo" id="Account">
+          <label>Account #: </label>
+          <input disabled />
+        </div>
+        <div class="CID" id="CID">
+          <label>CID: </label>
+          <input disabled />
+        </div>
+        <div class="meterNo" id="meterNo">
+          <label>Meter #: </label>
+          <input disabled />
+        </div>
+        <div class="serviceNo" id="Service">
+          <label>Service: </label>
+          <input disabled />
+        </div>
+      </div>
+      <div class="Data">
+        <div class="date" id="newDate">
+          <label>Date: </label>
+          <input disabled />
+        </div>
+        <table class="munisTable">
+          <tbody>
+            <tr>
+              <td id="condition">
+                Condition:
+                <input disabled />
+                <div class="notLight"></div>
+              </td>
+            </tr>
+            <tr style="height: 1.5rem"></tr>
+            <tr>
+              <td id="Count">
+                Count:
+                <input disabled />
+              </td>
+            </tr>
+            <tr>
+              <td id="Mean">
+                Mean:
+                <input disabled />
+              </td>
+              <td id="Median">
+                Median:
+                <input disabled />
+              </td>
+            </tr>
+            <tr>
+              <td id="Min">
+                Min Value:
+                <input disabled />
+              </td>
+              <td id="Max">
+                Max Value:
+                <input disabled />
+              </td>
+            </tr>
+            <tr>
+              <td id="Var">
+                Variance:
+                <input disabled />
+              </td>
+              <td id="Std">
+                Std Dev:
+                <input disabled />
+              </td>
+            </tr>
+            <tr style="height: 3rem"></tr>
+            <tr>
+              <td>
+                <label class="chLabel"
+                  >WO Printed
+                  <input
+                    style="width: 1rem; left: 1.5rem; position: absolute"
+                    type="checkbox"
+					disabled
+                  />
+                </label>
+              </td>
+              <td>
+                <label>
+                  <input disabled />         
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label class="chLabel">HURR Sent
+                  <input
+				  id="HUcheckbox"
+                    style="width: 1rem; left: 1.5rem; position: absolute"
+                    type="checkbox"
+                  />
+                </label>
+              </td>
+              <td>
+                <label>
+                  <input disabled />
+                </label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="Text" id="Text">
+          <label style="position:absolute;top:-2rem">Special Conditions/Comments:</label>
+          <textarea style="width:100%"></textarea>
+        </div>
+      </div>`;
+	panel.classList.add('munisPanel');
+	document.body.appendChild(panel);
+	panel.style.transform = 'translateX(150%)';
+	panel.style.opacity = '0%';
 
 mbutton.addEventListener('click', () => {
-  var panel = document.createElement('div');
-  panel.classList.add('munisPanel');
-  document.body.appendChild(panel);
-  document.getElementsByClassName('munisPanel')[0];
+  var panel = document.getElementById('myPanel');
   alert('button pushed!')
-  panel.style.transition = "3s ease-in ease-out";
+  panel.style.transform = 'translateX(100%)';
+  panel.style.opacity = 0;
   panel.animate(
     {
-      transform: 'translateX(0)',
+      transform: 'translateX(0%)',
       opacity: 1
     },
     500
   );
-
-  var panelHTML = 
-`<div>
-        <span>Statitics</span>
-        <div data-dashlane-rid="caadf806d22d3fb1" data-form-type="other">
-            <label>Account #: </label>
-            <input style="color: red;" data-dashlane-rid="c5e73ab24a4e79a2" data-form-type="other">
-        </div>
-</div>`
-
-  panel.innerHTML = panelHTML
 });
 
-
+	var panelbutton = document.querySelector('body > div.munisPanel > div.closebtn');
+	panelbutton.addEventListener('click', () => {
+		panel.animate(
+			{
+				transform: 'translateX(150%)',
+				opacity: '0%'
+			},
+			1000
+		);
+		panel.style.transform = 'translateX(150%)';
+		panel.style.opacity = '0%';
+		console.log('close button pushed', panel);
+	});
 };
 
-
-
-
-
 function handleResponse(message) {
-	// console.log(`Message from the background script: ${message.response}`)
-	const recievedData = message.response;
+	//  console.log(`Message from the background script: ${message.response}`)
+	const recievedData = message;
 	let finalData;
 	finalData = recievedData;
-	console.log(finalData);
 
-	if (recievedData[0] !== null) {
-		console.log(recievedData[0]);
+	if (recievedData !== null) {
+		console.log(finalData);
 		let accountField = document.querySelector('#Account > input');
 		let cidField = document.querySelector('#CID > input');
 		let minField = document.querySelector('#Min > input');
+		let meterNoField = document.querySelector('#meterNo > input');
 		let varField = document.querySelector('#Var > input');
 		let meanField = document.querySelector('#Mean > input');
 		let stdField = document.querySelector('#Std > input');
@@ -69,28 +186,29 @@ function handleResponse(message) {
 		let maxField = document.querySelector('#Max > input');
 		let countField = document.querySelector('#Count > input');
 		let serviceField = document.querySelector('#Service > input');
-		let SPCheck = document.querySelector('#SPcheckbox');
-		let DHCheck = document.querySelector('#DHcheckbox');
-		let MRCheck = document.querySelector('#MRcheckbox');
 		let HUCheck = document.querySelector('#HUcheckbox');
-		let SpConText = document.querySelector('#checkboxText');
+		let acTextbox = document.querySelector('#Text');
+		let newDateField = document.querySelector('#newDate > input');
+		let conditionField = document.querySelector('#condition > input');
 
 		if (accountField == null) {
 			console.log('nothing to add');
 		} else {
-			let accountData = finalData[0];
-			let cidData = finalData[1];
-			let minData = finalData[5];
-			let meanData = finalData[3];
-			let medianData = finalData[4];
-			let maxData = finalData[2];
-			let stdData = finalData[6];
-			let varData = finalData[8];
-			let countData = finalData[9];
-			let servicedata = finalData[7];
-			let HURR = finalData[12];
-			let MCon = finalData[10];
-			let SPCon = finalData[11];
+			let accountData = Object.values(finalData)[0][2];
+			let cidData = Object.values(finalData)[0][3];
+			let minData = Object.values(finalData)[0][11];
+			let meanData = Object.values(finalData)[0][8];
+			let medianData = Object.values(finalData)[0][12];
+			let maxData = Object.values(finalData)[0][10];
+			let stdData = Object.values(finalData)[0][14];
+			let varData = Object.values(finalData)[0][13];
+			let countData = Object.values(finalData)[0][9];
+			let servicedata = Object.values(finalData)[0][4];
+			let HURR = Object.values(finalData)[0][17];
+			let MCon = Object.values(finalData)[0][15];
+			let acText = Object.values(finalData)[0][19];
+			let meterNoData = Object.values(finalData)[0][5];
+			let newDateData = Object.values(finalData)[0][7];
 
 			// @ts-ignore
 			accountField.value = accountData;
@@ -113,29 +231,10 @@ function handleResponse(message) {
 			// @ts-ignore
 			serviceField.value = servicedata;
 			// @ts-ignore
-			console.log(accountField.value);
-
-			if (MCon !== 'E' || 'R') {
-				console.log('No Meter Condition Found');
-				// @ts-ignore
-				MRCheck.classList.remove('checkbox-mark');
-				// @ts-ignore
-				DHCheck.classList.remove('checkbox-mark');
-			}
-
-			if (MCon == 'E') {
-				// @ts-ignore
-				DHCheck.classList.add('checkbox-mark');
-				// @ts-ignore
-				console.log('DH:', DHCheck.value);
-			}
-
-			if (MCon == 'R') {
-				// @ts-ignore
-				MRCheck.classList.add('checkbox-mark');
-				// @ts-ignore
-				console.log('MR:', MRCheck.value);
-			}
+			meterNoField.value = meterNoData;
+			newDateField.value = newDateData;
+			conditionField.value = MCon;
+			acTextbox.value = acText;
 
 			if (HURR !== ' ') {
 				// @ts-ignore
@@ -147,21 +246,6 @@ function handleResponse(message) {
 			if (HURR == ' ') {
 				// @ts-ignore
 				HUCheck.classList.remove('checkbox-mark');
-			}
-
-			if (SPCon !== ' ') {
-				// @ts-ignore
-				SPCheck.classList.add('checkbox-mark');
-				// @ts-ignore
-				SpConText.value = SPCon;
-				console.log('SPcon text:', SPCon.value);
-			}
-
-			if (SPCon == ' ') {
-				// @ts-ignore
-				SPCheck.classList.remove('checkbox-mark');
-				// @ts-ignore
-				SpConText.value = ' ';
 			}
 
 			const actualUsage = document.querySelectorAll('input')[31].value;
@@ -195,13 +279,13 @@ function handleError(error) {
 // could be #w_123 or #w_659
 // @ts-ignore
 function notifyBackgroundPage() {
-	if (document.querySelectorAll('input')[1].value == null) {
+	if (document.querySelectorAll('input')[1] == null) {
 		console.log('Empty Field');
 	}
 	if (document.querySelectorAll('input')[1].value !== null) {
-		let accNo = document.querySelectorAll('input')[1].value;
-		let cidNo = document.querySelectorAll('input')[2].value;
-		let serCo = document.querySelectorAll('input')[4].value;
+		let accNo = document.querySelectorAll('input')[18].value;
+		let cidNo = document.querySelectorAll('input')[19].value;
+		let serCo = document.querySelectorAll('input')[21].value;
 		const accDetails = [accNo, cidNo, serCo];
 		console.log(accDetails);
 		// @ts-ignore
