@@ -1,5 +1,5 @@
 {
-    "name": "My first Svelte Extension",
+    "name": "Water Search Extension",
     "description": "A browser extension made with Svelte Kit",
     "version": "1.0.0",
     "manifest_version": 3,
