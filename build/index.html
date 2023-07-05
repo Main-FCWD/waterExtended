@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<link rel="icon" href="./favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script src="https://unpkg.com/@supabase/supabase-js"></script>
+		<script type="module">
+			import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+			const supabase = createClient(
+				'https://nkkzwoydapppptjcjqsm.supabase.co',
+				'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5ra3p3b3lkYXBwcHB0amNqcXNtIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODMwNTM3MDIsImV4cCI6MTk5ODYyOTcwMn0.hm94JMq-eHUA4cvvucxx1P5e_IV84ZJuQHNsyZK4re8'
+			);
+
+			console.log('Supabase Instance: ', supabase);
+			// ...
+		</script>
+		
+		<link rel="modulepreload" href="./app/immutable/entry/start.c2174356.js">
+		<link rel="modulepreload" href="./app/immutable/chunks/index.20fe1016.js">
+		<link rel="modulepreload" href="./app/immutable/chunks/singletons.215ca785.js">
+		<link rel="modulepreload" href="./app/immutable/entry/app.b0c9edeb.js">
+		<link rel="modulepreload" href="./app/immutable/nodes/0.529f47c4.js">
+		<link rel="modulepreload" href="./app/immutable/nodes/2.a0674807.js">
+	</head>
+	<body style="width: 400px; height: 500px">
+		<div id="svelte" style="display: contents">
+
+
+<button>Reveal current Url</button>
+
+
+
+			
+			<script>
+				{
+					__sveltekit_udrlbu = {
+						base: new URL(".", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null];
+
+					Promise.all([
+						import("./app/immutable/entry/start.c2174356.js"),
+						import("./app/immutable/entry/app.b0c9edeb.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 2],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>
