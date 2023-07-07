@@ -81,6 +81,7 @@ function handleMessage(request, sender, sendResponse) {
 			sendResponse({ response: accountData });
 		})
 		.catch((error) => {
+			sendResponse({ response: null })
 			console.log(error);
 		});
 
