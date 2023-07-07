@@ -18,8 +18,8 @@
 
 .munisPanel {
 	position: fixed;
-	top: 3rem;
-	height: calc(95vh - 2rem);
+	top: 8rem;
+	height: calc(95vh - 6rem);
 	padding: 1rem;
 	width: 25em;
 	right: 10px;
